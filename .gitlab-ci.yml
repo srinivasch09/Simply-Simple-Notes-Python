@@ -1,0 +1,56 @@
+image: docker:19.03.8
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_HOST: tcp://docker:2375
+  MOUNT_POINT: /builds/$CI_PROJECT_PATH/mnt
+
+include:
+  - template: SAST.gitlab-ci.yml
+  - template: Dependency-Scanning.gitlab-ci.yml
+  - template: License-Scanning.gitlab-ci.yml
+  - template: Container-Scanning.gitlab-ci.yml
+  - template: DAST.gitlab-ci.yml
+
+services:
+  - docker:19.03.8-dind
+
+stages:
+  - build
+  - test
+  - deploy
+  - dast
+
+build:
+  image: docker:19.03.8
+  stage: build
+  variables:
+    IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHA
+  script:
+    - sleep 5
+    - docker info
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $IMAGE .
+    - docker push $IMAGE
+
+deploy_staging:
+  image: registry.gitlab.com/gitlab-org/cluster-integration/helm-install-image/releases/2.13.1-kube-1.11.9
+  stage: deploy
+  variables:
+    IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHA
+    TILLER_NAMESPACE: gitlab-managed-apps
+  script:
+    - echo $TILLER_NAMESPACE
+    - kubectl get secrets/tiller-secret -n "$TILLER_NAMESPACE" -o "jsonpath={.data['ca\.crt']}" | base64 -d > tiller-ca.crt
+    - kubectl get secrets/tiller-secret -n "$TILLER_NAMESPACE" -o "jsonpath={.data['tls\.crt']}" | base64 -d > tiller.crt
+    - kubectl get secrets/tiller-secret -n "$TILLER_NAMESPACE" -o "jsonpath={.data['tls\.key']}" | base64 -d > tiller.key
+    - helm version --tiller-connection-timeout 30 --tls --tls-ca-cert tiller-ca.crt --tls-cert tiller.crt --tls-key tiller.key --tiller-namespace gitlab-managed-apps 
+    - helm upgrade -f helm/values.yaml --set image=$IMAGE --install notes ./helm --tiller-connection-timeout 30 --tls --tls-ca-cert tiller-ca.crt --tls-cert tiller.crt --tls-key tiller.key --tiller-namespace gitlab-managed-apps 
+  environment:
+    name: staging
+
+dast:
+  stage: dast
+  variables:
+    DAST_WEBSITE: http://$INGRESS_ENDPOINT/
