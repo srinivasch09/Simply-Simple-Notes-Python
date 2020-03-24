@@ -44,3 +44,10 @@ Note added successfully!
 curl -X DELETE "127.0.0.1:5000/delete?id=1"
 Note deleted successfully!
 ```
+
+**Viewing a note:**
+
+```bash
+$ curl -X GET "127.0.0.1:5000/get?id=1"
+[(1, u'my n0te')]%
+```
