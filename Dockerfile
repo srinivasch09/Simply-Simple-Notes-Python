@@ -1,4 +1,4 @@
-FROM python:3.8.2-alpine
+FROM python:alpine3.7
 
 RUN apk update
 
