@@ -9,11 +9,6 @@ def create_connection():
 
     try:
         conn = sqlite3.connect('notes.db')
-        
-        os.chmod('notes.db', 0o777)
-        current_dir = os.system("/bin/ls *")
-
-        logging.info("Version '%s', Current Dir '%s'" % (sqlite3.version, current_dir))
     except Error as e:
         logging.error(e)
 
@@ -44,12 +39,3 @@ def delete_note(conn, id):
     cur.execute(query, (id,))
 
     conn.commit()
-
-def select_note_by_id(conn, id):
-    query = "SELECT * FROM notes WHERE id = '%s'" % id
-
-    cur = conn.cursor()
-    cur.execute(query)
-
-    rows = cur.fetchall()
-    return str(rows)
