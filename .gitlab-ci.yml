@@ -33,6 +33,11 @@ build:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build -t $IMAGE .
     - docker push $IMAGE
+    
+container_scanning:
+    stage: test
+    variables:
+        GIT_STRATEGY: fetch
 
 deploy_staging:
   image: registry.gitlab.com/gitlab-org/cluster-integration/helm-install-image/releases/2.13.1-kube-1.11.9
