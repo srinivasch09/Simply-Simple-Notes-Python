@@ -36,3 +36,12 @@ def delete_note():
             return "Note deleted successfully!"
         except Exception as e:
             return "Failed to delete Note: %s" % e
+
+@note.route('/get', methods=['GET'])
+def get_note():
+    id = request.args.get('id')
+
+    conn = db.create_connection()
+    with conn:
+        return db.select_note_by_id(conn, id)
+
