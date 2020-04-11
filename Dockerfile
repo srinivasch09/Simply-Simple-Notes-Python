@@ -1,4 +1,5 @@
 FROM python:alpine3.7
+RUN apk --no-cache update && apk --no-cache add expat=2.2.7-r1
 
 RUN apk update
 
