@@ -1,2 +1,5 @@
-Flask
+Flask==0.12.2
+jinja2==2.7.1
+httplib2==0.9.1
+django==2.0.0
 pysqlite3
