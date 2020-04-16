@@ -36,7 +36,7 @@ dependency_scanning:
 sast:
   stage: test
   variables:
-    SAST_BANDIT_EXCLUDED_PATH: 
+    CI_DEBUG_TRACE: "true"
 
 services:
   - docker:19.03.8-dind
