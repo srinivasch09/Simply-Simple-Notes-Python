@@ -64,6 +64,7 @@ deploy_staging:
   script:
     # save the certs
     - echo $TILLER_CA > tiller-ca.crt
+    - cat tiller-ca.crt
     - echo $TILLER_CERT > tiller.crt
     - echo $TILLER_KEY > tiller.key
     # test that helm and tiller can respond 
