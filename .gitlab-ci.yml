@@ -61,6 +61,7 @@ deploy_staging:
   stage: deploy
   variables:
     TILLER_NAMESPACE: gitlab-managed-apps
+    IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHA
   script:
     # save the certs
     - echo $TILLER_CA | base64 -d > tiller-ca.crt
