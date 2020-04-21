@@ -63,10 +63,9 @@ deploy_staging:
     TILLER_NAMESPACE: gitlab-managed-apps
   script:
     # save the certs
-    - echo $TILLER_CA > tiller-ca.crt
-    - cat tiller-ca.crt
-    - echo $TILLER_CERT > tiller.crt
-    - echo $TILLER_KEY > tiller.key
+    - echo $TILLER_CA | base64 -d > tiller-ca.crt
+    - echo $TILLER_CERT | base64 -d > tiller.crt
+    - echo $TILLER_KEY | base64 -d > tiller.key
     # test that helm and tiller can respond 
     - helm version --tiller-connection-timeout 30 --tls --tls-ca-cert tiller-ca.crt --tls-cert tiller.crt --tls-key tiller.key --tiller-namespace $TILLER_NAMESPACE
     # upgrade or install the image
