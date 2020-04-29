@@ -33,6 +33,9 @@ sast:
   stage: test
   variables:
     CI_DEBUG_TRACE: "true"
+  artifacts:
+    reports:
+      sast: gl-sast-report.json
 
 services:
   - docker:19.03.8-dind
