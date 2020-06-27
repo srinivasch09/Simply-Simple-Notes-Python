@@ -1,2 +1,7 @@
 vault:
   installed: true
+
+clusterType: gke
+
+cilium:
+  installed: true
