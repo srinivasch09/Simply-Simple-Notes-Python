@@ -5,3 +5,6 @@ clusterType: gke
 
 cilium:
   installed: true
+
+ingress:
+  installed: true
