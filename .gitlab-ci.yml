@@ -12,6 +12,7 @@ include:
   - template: License-Scanning.gitlab-ci.yml
   - template: Container-Scanning.gitlab-ci.yml
   - template: DAST.gitlab-ci.yml
+  - template: Managed-Cluster-Applications.gitlab-ci.yml
   
 container_scanning:
     stage: test
