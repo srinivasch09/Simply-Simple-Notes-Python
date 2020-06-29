@@ -1,9 +1,11 @@
 from notes import db, note
 from flask import request
+from flask_wtf.csrf import CSRFProtect
 
 
 @note.route('/')
 @note.route('/index')
+@csrf.exempt
 def index():
     return "Welcome to your veryyyyy basic NotePad"
 
