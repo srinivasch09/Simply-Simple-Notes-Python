@@ -1,14 +1,17 @@
 from notes import db, note
 from flask import request
-from flask_wtf.csrf import CSRFProtect
 
 
 @note.route('/')
 @note.route('/index')
-@csrf.exempt
 def index():
-    return "Welcome to your veryyyyy basic NotePad"
+    name = "world"
+    template = '''<p> Hi, how are you {{ name }}! </p>'''
 
+    if request.args.get('name'):
+        name = request.args.get('name')
+    
+    return render_template(template, name=name)
 
 @note.route('/add', methods=['POST'])
 def add_note():
