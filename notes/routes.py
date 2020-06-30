@@ -1,5 +1,5 @@
 from notes import db, note
-from flask import request
+from flask import request, render_template_string, request, send_file
 
 
 @note.route('/')
@@ -11,7 +11,16 @@ def index():
     if request.args.get('name'):
         name = request.args.get('name')
     
-    return render_template(template, name=name)
+    return render_template_string(template, name=name)
+
+
+@note.route('/sitemap.xml', methods=['GET', 'POST'])
+def site_map():
+    try:
+        return send_file('/app/static/sitemap.xml', attachment_filename='sitemap.xml')
+    except Exception as e:
+        return str(e)
+
 
 @note.route('/add', methods=['POST'])
 def add_note():
