@@ -61,7 +61,7 @@ build:
     
 deploy_staging:
   # using a container image containing helm
-  image: registry.gitlab.com/gitlab-org/cluster-integration/helm-install-image/releases/2.13.1-kube-1.11.9
+  image: alpine/helm:3.2.4
   stage: deploy
   variables:
     TILLER_NAMESPACE: gitlab-managed-apps
