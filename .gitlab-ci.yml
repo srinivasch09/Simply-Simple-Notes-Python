@@ -61,11 +61,12 @@ build:
     
 deploy_staging:
   # using a container image containing helm
-  image: alpine/helm:3.2.4
+  image: registry.gitlab.com/gitlab-org/cluster-integration/helm-install-image/releases/2.16.7-kube-1.13.12
   stage: deploy
   variables:
     TILLER_NAMESPACE: gitlab-managed-apps
     IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHA
+    HELM_HOST: "localhost:44134"
   script:
     # save the certs
     # - echo $TILLER_CA | base64 -d > tiller-ca.crt
@@ -76,6 +77,7 @@ deploy_staging:
     # - helm version --tiller-connection-timeout 30 --tls --tls-ca-cert tiller-ca.crt --tls-cert tiller.crt --tls-key tiller.key --tiller-namespace $TILLER_NAMESPACE
     # upgrade or install the image
     # - helm upgrade -f helm/values.yaml --set image=$IMAGE --install notes ./helm --tiller-connection-timeout 30 --tls --tls-ca-cert tiller-ca.crt --tls-cert tiller.crt --tls-key tiller.key --tiller-namespace $TILLER_NAMESPACE
+    - tiller -listen ${HELM_HOST} -alsologtostderr > /dev/null 2>&1 &
     - helm version
     - helm upgrade -f helm/values.yaml --set image=$IMAGE --install notes ./helm
   environment:
