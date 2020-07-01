@@ -68,7 +68,7 @@ deploy_staging:
     IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHA
   script:
     # save the certs
-    - helm init --service-account tiller --tiller-namespace $TILLER_NAMESPACE
+    - helm init --service-account tiller --tiller-namespace $TILLER_NAMESPACE --tiller-tls
     - echo $TILLER_CA | base64 -d > tiller-ca.crt
     - echo $TILLER_CERT | base64 -d > tiller.crt
     - echo $TILLER_KEY | base64 -d > tiller.key
