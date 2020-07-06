@@ -11,3 +11,6 @@ ingress:
   
 prometheus:
   installed: true
+  
+falco:
+  installed: true
