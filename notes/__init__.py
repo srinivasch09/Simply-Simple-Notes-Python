@@ -1,7 +1,11 @@
 import logging
 from flask import Flask
+from config import Config
+
 
 note = Flask(__name__)
+note.config.from_object(Config)
+
 
 from notes import db, routes
 

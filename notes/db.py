@@ -39,3 +39,15 @@ def delete_note(conn, id):
     cur.execute(query, (id,))
 
     conn.commit()
+
+def select_note_by_id(conn, id=None):
+    query = "SELECT * FROM notes"
+
+    if id:
+        query = query + " WHERE id = '%s'" % id
+
+    cur = conn.cursor()
+    cur.execute(query)
+
+    rows = cur.fetchall()
+    return str(rows)

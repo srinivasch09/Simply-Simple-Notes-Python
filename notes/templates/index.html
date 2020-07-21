@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Simply Simple Notes</title>
+    </head>
+    <body>
+        <h1>My Notes</h1>
+
+        
+        <div><p><b>{{ notes }}</b></p></div>
+  
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        
+        {% block content %}
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.add_note.label }}<br>
+                {{ form.add_note(size=32) }}
+            </p>
+            <p>{{ form.submit() }}</p>
+        </form>
+        {% endblock %}
+    </body>
+</html>
