@@ -50,4 +50,4 @@ def select_note_by_id(conn, id=None):
     cur.execute(query)
 
     rows = cur.fetchall()
-    return str(rows)
+    return rows

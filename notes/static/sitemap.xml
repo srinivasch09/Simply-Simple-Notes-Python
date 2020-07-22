@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url>
+      <loc>http://104.197.176.211/</loc>
+   </url>
+   <url>
+      <loc>http://104.197.176.211/?name=Bob</loc>
+   </url>
+   <url>
+      <loc>http://104.197.176.211/add</loc>
+   </url>
+   <url>
+      <loc>http://104.197.176.211/delete</loc>
+   </url>
+   <url>
+      <loc>http://104.197.176.211/get</loc>
+   </url>
+</urlset> 

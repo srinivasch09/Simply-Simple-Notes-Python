@@ -1,33 +1,56 @@
+{% extends 'bootstrap/base.html' %}
 <html>
-    <head>
-        <title>Simply Simple Notes</title>
-    </head>
+   
+    {% block title %}Simply Simple Notes{% endblock %}
+    
+    {% block content %}
     <body>
-        <h1>My Notes</h1>
+        <center>
+            <h1>Simply Simple Notes</h1>
+            <img src="static/images/gitlab-icon-rgb.png" alt="gitlab_logo" class="img-thumbnail">
 
-        
-        <div><p><b>{{ notes }}</b></p></div>
-  
+            <hr>
 
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
+            <h4>my notes</h4>
+
+            {% for note in notes %}
+            <div><p><b>{{ note }}</b></p></div>
             {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
-        
-        {% block content %}
-        <form action="" method="post" novalidate>
-            {{ form.hidden_tag() }}
-            <p>
-                {{ form.add_note.label }}<br>
-                {{ form.add_note(size=32) }}
-            </p>
-            <p>{{ form.submit() }}</p>
-        </form>
-        {% endblock %}
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+
+            <hr>
+            
+            <h4>add a new note</h4>
+            <form action="" method="post" novalidate>
+                {{ add_form.hidden_tag() }}
+                <p>
+                    {{ add_form.note_field.label }}<br>
+                    {{ add_form.note_field(size=32) }}
+                </p>
+                <p>{{ add_form.add() }}</p>
+            </form>
+
+            <hr>
+
+            <h4>delete an old note</h4>
+            <form action="" method="post" novalidate>
+                {{ delete_form.hidden_tag() }}
+                <p>
+                    {{ delete_form.id_field.label }}<br>
+                    {{ delete_form.id_field(size=2) }}
+                </p>
+                <p>{{ delete_form.delete() }}</p>
+            </form>
+        </center>
     </body>
+    {% endblock %}
 </html>

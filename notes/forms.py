@@ -3,5 +3,9 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
 
 class AddForm(FlaskForm):
-    add_note = StringField('Add Note', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    note_field = StringField('Enter Note', validators=[DataRequired()])
+    add = SubmitField('Add')
+
+class DeleteForm(FlaskForm):
+    id_field = StringField('Enter Id', validators=[DataRequired()])
+    delete = SubmitField('Delete')

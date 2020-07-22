@@ -48,6 +48,6 @@ Note deleted successfully!
 **Viewing a note:**
 
 ```bash
-$ curl -X POST "127.0.0.1:5000/add" -d '{"message":"my n0te"}'
+$ curl -X GET "127.0.0.1:5000/add" -d '{"message":"my n0te"}'
 Note added successfully!
 ```

@@ -1,11 +1,12 @@
 import logging
 from flask import Flask
 from config import Config
+from flask_bootstrap import Bootstrap
 
 
 note = Flask(__name__)
 note.config.from_object(Config)
-
+bootstrap = Bootstrap(note)
 
 from notes import db, routes
 

@@ -1,6 +1,6 @@
 import logging
 from notes import db, note
-from notes.forms import AddForm
+from notes.forms import AddForm, DeleteForm
 from flask import render_template, request, send_file, flash, redirect
 
 
@@ -8,27 +8,45 @@ from flask import render_template, request, send_file, flash, redirect
 @note.route('/index', methods=['GET', 'POST'])
 def index():
     items = get_note()
-    form = AddForm()
+    arr = []
+    for item in items:
+        try:
+            _id = item[0]
+            _note = item[1]
+            note_str = '%s. "%s"' % (_id, _note)
+            arr.append(note_str)
+        except Exception as e:
+            return str(e)
 
-    if form.validate_on_submit():
-        add_note(form.add_note.data)
+    add_form = AddForm()
+    delete_form = DeleteForm()
+
+    if add_form.validate_on_submit():
+        add_note(add_form.note_field.data)
         flash('Note "{}" has been added!'.format(
-            form.add_note.data))
-        return redirect('/index')
+            add_form.note_field.data))
 
-    return render_template('index.html', notes=items, form=form)
+        return redirect('/')
+
+    if delete_form.validate_on_submit():
+        delete_note(delete_form.id_field.data)
+        flash('Note "{}" has been Deleted!'.format(
+            delete_form.id_field.data))
+
+        return redirect('/')
+    
+    return render_template('index.html', notes=arr, add_form=add_form, delete_form=delete_form)
 
 @note.route('/sitemap.xml', methods=['GET', 'POST'])
 def site_map():
     try:
-        return send_file('/app/static/sitemap.xml', attachment_filename='sitemap.xml')
+        return send_file('static/sitemap.xml', attachment_filename='sitemap.xml')
     except Exception as e:
         return str(e)
 
 @note.route('/add', methods=['POST'])
 def add_note(msg=""):
 
-    note.logger
     if not msg:
         data = request.get_json(force=True)
         msg = data.get('message')
@@ -46,8 +64,12 @@ def add_note(msg=""):
 
 
 @note.route('/delete', methods=['DELETE'])
-def delete_note():
-    id = request.args.get('id')
+def delete_note(id=None):
+    if not id:
+        id = request.args.get('id')
+
+    if not id:
+        return "No Id sent in request."
 
     conn = db.create_connection()
     with conn:
