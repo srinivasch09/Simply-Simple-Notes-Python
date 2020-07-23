@@ -4,11 +4,11 @@ import sqlite3
 from sqlite3 import Error
 
 
-def create_connection():
+def create_connection(name='notes.db'):
     conn = None
 
     try:
-        conn = sqlite3.connect('notes.db')
+        conn = sqlite3.connect(name)
     except Error as e:
         logging.error(e)
 

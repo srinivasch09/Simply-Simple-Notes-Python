@@ -7,7 +7,7 @@ from flask import render_template, request, send_file, flash, redirect
 @note.route('/', methods=['GET', 'POST'])
 @note.route('/index', methods=['GET', 'POST'])
 def index():
-    items = get_note()
+    items = get_note_ui()
     arr = []
     for item in items:
         try:
@@ -79,13 +79,16 @@ def delete_note(id=None):
         except Exception as e:
             return "Failed to delete Note: %s" % e
 
-@note.route('/get', methods=['GET'])
-def get_note():
+def get_note_ui():
     id = request.args.get('id')
-
     conn = db.create_connection()
+
     with conn:
         try:
             return db.select_note_by_id(conn, id)
         except Exception as e:
             return "Failed to delete Note: %s" % e
+
+@note.route('/get', methods=['GET'])
+def get_note():
+    return str(get_note_ui())

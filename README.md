@@ -1,9 +1,10 @@
 # Simply Simple Notes
 
 This is a simple application that stores notes in a SQLite file. This project is
-meant to be used as a demo to display some of the [Gitlab's Secure](https://about.gitlab.com/stages-devops-lifecycle/secure/) Features.
+meant to be used as a demo to display some of the Gitlab's [Secure](https://about.gitlab.com/stages-devops-lifecycle/secure/) and [Defend](https://about.gitlab.com/stages-devops-lifecycle/defend/) features.
 
-This application is meant to be kept clean for demos. In order to showcase Secure features, please copy this application and perform functions in your own path.
+To get started on giving a demo see the [Running a Demo](./docs/running_demo.md) section.
+In order to setup this project in your own space, checkout the [Usage Guide](./docs/usage_guide.md)
 
 ## Requirements
 
@@ -22,32 +23,20 @@ This application is meant to be kept clean for demos. In order to showcase Secur
     pip install -r requirements.txt
     ```
 
-## Usage
+## Running
 
-**Starting it up:**
+If running locally, you can start up the application by running the following:
 
 ```bash
 $ python run.py
 * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ```
 
-**Adding a note:**
+## Usage
 
-```bash
-$ curl -X POST "127.0.0.1:5000/add" -d '{"message":"my n0te"}'
-Note added successfully!
-```
+The application consists of a simple UI that allows notes to be read, deleted, and added to
+a database. The database is shared between all appliaction users. 
 
-**Deleting a note:**
+The application will display all the notes at the home screen. It will also allow adding a note, which adds it to the end of the list, a note can also be deleted by id.
 
-```bash
-curl -X DELETE "127.0.0.1:5000/delete?id=1"
-Note deleted successfully!
-```
-
-**Viewing a note:**
-
-```bash
-$ curl -X GET "127.0.0.1:5000/add" -d '{"message":"my n0te"}'
-Note added successfully!
-```
+**Note:** You can also use the API describe in [API Guidelines](./docs/api_guidelines.md)
