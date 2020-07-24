@@ -28,6 +28,7 @@ def index():
 
         return redirect('/')
 
+    # TODO: Add return and flash error if note does not exist
     if delete_form.validate_on_submit():
         delete_note(delete_form.id_field.data)
         flash('Note "{}" has been Deleted!'.format(

@@ -8,7 +8,7 @@ This guide is meant for a user who wishes to move over this application to their
 namespace and play around with it on there. If user just intends to view the security
 features, they can see the [Running Demo](./running_demo.md) section.
 
-**Note:** Requires GitLab Ultimate.
+**Note:** Requires [GitLab Ultimate]().
 
 ## Setup
 

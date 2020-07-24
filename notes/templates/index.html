@@ -9,14 +9,6 @@
             <h1>Simply Simple Notes</h1>
             <img src="static/images/gitlab-icon-rgb.png" alt="gitlab_logo" class="img-thumbnail">
 
-            <hr>
-
-            <h4>my notes</h4>
-
-            {% for note in notes %}
-            <div><p><b>{{ note }}</b></p></div>
-            {% endfor %}
-
             {% with messages = get_flashed_messages() %}
             {% if messages %}
             <ul>
@@ -28,28 +20,39 @@
             {% endwith %}
 
             <hr>
+
+            <h3><b>My notes</b></h3>
+
+            {% for note in notes %}
+            <div><p><b>{{ note }}</b></p></div>
+            {% endfor %}
+
+            <hr>
             
-            <h4>add a new note</h4>
-            <form action="" method="post" novalidate>
+            <h3>Add a new note</h3>
+            <form class="form-inline" action="" method="post" novalidate>
                 {{ add_form.hidden_tag() }}
                 <p>
-                    {{ add_form.note_field.label }}<br>
+                    {{ add_form.note_field.label }}
                     {{ add_form.note_field(size=32) }}
+                    {{ add_form.add() }}
                 </p>
-                <p>{{ add_form.add() }}</p>
             </form>
 
             <hr>
 
-            <h4>delete an old note</h4>
-            <form action="" method="post" novalidate>
+            <h3>Delete an old note</h3>
+            <form class="form-inline" action="" method="post" novalidate>
                 {{ delete_form.hidden_tag() }}
                 <p>
-                    {{ delete_form.id_field.label }}<br>
+                    {{ delete_form.id_field.label }}
                     {{ delete_form.id_field(size=2) }}
+                    {{ delete_form.delete() }}
                 </p>
-                <p>{{ delete_form.delete() }}</p>
             </form>
+
+            <hr>
+
         </center>
     </body>
     {% endblock %}
