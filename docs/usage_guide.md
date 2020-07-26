@@ -8,28 +8,41 @@ This guide is meant for a user who wishes to move over this application to their
 namespace and play around with it on there. If user just intends to view the security
 features, they can see the [Running Demo](./running_demo.md) section.
 
-**Note:** Requires [GitLab Ultimate]().
+**Note:** Requires [GitLab Gold](https://about.gitlab.com/pricing/ultimate/).
 
-## Setup
+## Create a GitLab Account
 
-### Create a GitLab Account
+If you do not already have a [GitLab account](https://gitlab.com/), please create one. 
+GitLab Gold is avaliable as a [free-trial](https://about.gitlab.com/free-trial/) for 30 days.
 
-If you do not already have a GitLab account, please create one. You can use Ultimate as
-a trial for 30 days.
+## Migrate Application
 
-### Migrate Application
+You can import [Simply Simple Notes](https://gitlab.com/gitlab-examples/security/simply-simple-notes) to your project repo using it's
+[Git Repository URL](https://docs.gitlab.com/ee/user/project/import/repo_by_url.html).
 
-### Create a Kubernetes Cluster
+## Create a Kubernetes Cluster
 
 This application is containerized and provides a helm chart so that it can be deployed onto
 a Kubernetes Cluster. A Kubernetes cluster is required in order to run this demo application.
+
+In order to create a cluster and attach a Kubernetes cluster to your project,
+see the [Add/Remove Cluster documentation](https://docs.gitlab.com/ee/user/project/clusters/add_remove_clusters.html)
+
+The cluster should be enabled as a GitLab-managed cluster. Also the Simply Simple Notes
+project should be added as a [Cluster Management Project](https://docs.gitlab.com/ee/user/clusters/management_project.html).
 
 **Cluster Requirements:**
 
 The minimum cluster requirements are as follows:
 
-### Attach Kubernetes Cluster
+- CPU: 2 vCPU
+- Memory: 2 GB
+- Hard-Disk: Standard 100GB
 
-### Run Pipeline
+## Run Pipeline
 
-### Obtain the Ingress Endpoint
+Once the project has been migrated and the cluster has been attached, 
+you can [run a pipeline](https://docs.gitlab.com/ee/ci/pipelines/#run-a-pipeline-manually) on the master branch and make sure that the
+security scans are running.
+
+[Adding Security to your CICD Pipeline](https://youtu.be/Fd5DhebtScg) provides more information on how the security scans are configured in the pipeline.
