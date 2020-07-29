@@ -2,18 +2,15 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
-      <loc>http://104.197.176.211/</loc>
+      <loc>http://notes.tanuki.host/</loc>
    </url>
    <url>
-      <loc>http://104.197.176.211/?name=Bob</loc>
+      <loc>http://notes.tanuki.host/add</loc>
    </url>
    <url>
-      <loc>http://104.197.176.211/add</loc>
+      <loc>http://notes.tanuki.host/delete</loc>
    </url>
    <url>
-      <loc>http://104.197.176.211/delete</loc>
-   </url>
-   <url>
-      <loc>http://104.197.176.211/get</loc>
+      <loc>http://notes.tanuki.host/get</loc>
    </url>
 </urlset> 

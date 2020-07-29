@@ -23,7 +23,7 @@ container_scanning:
 dast:
   stage: dast
   variables:
-    DAST_WEBSITE: http://$INGRESS_ENDPOINT/
+    DAST_WEBSITE: http://notes.tanuki.host/
 
 dependency_scanning:
   stage: test

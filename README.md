@@ -6,6 +6,8 @@ meant to be used as a demo to display some of the Gitlab's [Secure](https://abou
 To get started on giving a demo see the [Running a Demo](./docs/running_demo.md) section.
 In order to setup this project in your own space, checkout the [Usage Guide](./docs/usage_guide.md)
 
+The application can be accessed in production by visting [http://notes.tanuki.host/](http://notes.tanuki.host/).
+
 ## Requirements
 
 - Python
