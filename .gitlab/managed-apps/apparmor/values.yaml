@@ -10,10 +10,10 @@ profiles:
     }
 
 securityPolicies:
-  example:
-    defaultProfile: k8s-apparmor-example-deny-write
+  psp-example:
+    defaultProfile: localhost/k8s-apparmor-example-deny-write
     allowedProfiles:
-    - k8s-apparmor-example-deny-write
+    - localhost/k8s-apparmor-example-deny-write
     spec:
       privileged: false
       seLinux:
