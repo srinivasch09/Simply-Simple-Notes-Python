@@ -1,0 +1,28 @@
+profiles:
+  k8s-apparmor-example-deny-write: |-
+    #include <tunables/global>
+    profile k8s-apparmor-example-deny-write flags=(attach_disconnected) {
+      #include <abstractions/base>
+
+      file,
+      
+      deny /** w,
+    }
+
+securityPolicies:
+  example:
+    defaultProfile: k8s-apparmor-example-deny-write
+    allowedProfiles:
+    - k8s-apparmor-example-deny-write
+    spec:
+      privileged: false
+      seLinux:
+        rule: RunAsAny
+      supplementalGroups:
+        rule: RunAsAny
+      runAsUser:
+        rule: RunAsAny
+      fsGroup:
+        rule: RunAsAny
+      volumes:
+        - '*'

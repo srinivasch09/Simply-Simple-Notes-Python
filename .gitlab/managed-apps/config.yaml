@@ -1,9 +1,12 @@
+clusterType: gke
+
 vault:
   installed: true
 
-clusterType: gke
-
 cilium:
+  installed: true
+
+apparmor:
   installed: true
 
 ingress:
