@@ -8,21 +8,3 @@ profiles:
       
       deny /** w,
     }
-
-# securityPolicies:
-#   psp-example:
-#     defaultProfile: localhost/k8s-apparmor-example-deny-write
-#     allowedProfiles:
-#     - localhost/k8s-apparmor-example-deny-write
-#     spec:
-#       privileged: false
-#       seLinux:
-#         rule: RunAsAny
-#       supplementalGroups:
-#         rule: RunAsAny
-#       runAsUser:
-#         rule: RunAsAny
-#       fsGroup:
-#         rule: RunAsAny
-#       volumes:
-#         - '*'
