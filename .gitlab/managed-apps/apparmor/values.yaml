@@ -1,10 +1,34 @@
 profiles:
-  k8s-apparmor-example-deny-write: |-
+  profile-one: |-
     #include <tunables/global>
-    profile k8s-apparmor-example-deny-write flags=(attach_disconnected) {
-      #include <abstractions/base>
 
-      file,
-      
-      deny /** w,
+    profile profile-one flags=(attach_disconnected,mediate_deleted) {
+      #include <abstractions/base>
+      deny /bin/top mrwklx,
     }
+
+securityPolicies:
+  example:
+    allowedProfiles:
+      - localhost/profile-one
+    spec:
+      privileged: true
+      allowPrivilegeEscalation: true
+      allowedCapabilities:
+      - '*'
+      volumes:
+      - '*'
+      hostNetwork: true
+      hostPorts:
+      - min: 0
+        max: 65535
+      hostIPC: true
+      hostPID: true
+      runAsUser:
+        rule: 'RunAsAny'
+      seLinux:
+        rule: 'RunAsAny'
+      supplementalGroups:
+        rule: 'RunAsAny'
+      fsGroup:
+        rule: 'RunAsAny'
