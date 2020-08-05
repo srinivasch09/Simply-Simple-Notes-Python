@@ -4,7 +4,7 @@ profiles:
 
     profile profile-one flags=(attach_disconnected,mediate_deleted) {
       #include <abstractions/base>
-      deny /bin/top mrwklx,
+      deny /** w,
     }
 
 securityPolicies:
