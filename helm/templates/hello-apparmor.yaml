@@ -8,4 +8,4 @@ spec:
   containers:
   - name: hello
     image: busybox
-    command: [ "sh", "-c", "echo 'Hello AppArmor!'" ]
+    command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
