@@ -2,7 +2,7 @@ profiles:
   profile-one: |-
     #include <tunables/global>
 
-    profile profile-one flags=(attach_disconnected,mediate_deleted) {
+    profile profile-one flags=(attach_disconnected) {
       #include <abstractions/base>
       file,
       deny /** w,
