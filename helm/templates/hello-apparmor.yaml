@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: hello-apparmor
   annotations:
-    container.apparmor.security.beta.kubernetes.io/auto-deploy-app: localhost/profile-one
+    container.apparmor.security.beta.kubernetes.io/hello: localhost/profile-one
 spec:
   containers:
   - name: hello

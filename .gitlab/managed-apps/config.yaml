@@ -6,13 +6,13 @@ vault:
 cilium:
   installed: true
 
-apparmor:
-  installed: true
-
 ingress:
   installed: true
   
 prometheus:
+  installed: true
+
+apparmor:
   installed: true
   
 falco:
