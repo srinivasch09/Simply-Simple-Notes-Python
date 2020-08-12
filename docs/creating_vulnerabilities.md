@@ -1,7 +1,7 @@
-# How to create vulnerabilities for the demo
+# How to Create Vulnerabilities for the Demo
 
-This document is a guide on how to create vulnerabilities. These vulnerabilities should be added within an MR, that way GitLab
-Security features can be showcased.
+This document is a guide on how to create vulnerabilities. These vulnerabilities should be added 
+within an MR, that way GitLab Security features can be showcased.
 
 ## Static Application Security Testing (SAST) + Secret Detection
 
@@ -9,11 +9,10 @@ SAST scans the application's static source code for vulnerabilites.
 It can detect things like bad file permissions, SQL injection, etc.
 
 In this example we will make the code suseptible to SQL injection, by
-adding some code vulnerable to SQL injection to [db.py](../notes/db.py).
-Just change the `select_note_by_id` function to the following:
+adding some code vulnerable to SQL injection to [db.py](../notes/db.py):
 
 ```
-def select_note_by_id(conn, id):
+def select_note_by_id_vulnerable(conn, id):
     query = "SELECT * FROM notes WHERE id = '%s'" % id
 
     cur = conn.cursor()
@@ -27,7 +26,7 @@ You can also add make a file extermely permissive by adding configuring
 the permission of the `notes.db` file generated in the [db.py](../notes/db.py) file:
 
 ```
-os.chmod('notes.db', 0o777)
+os.chmod(name, 0o777)
 ```
 
 For secret detection to run we can add an AWS sample Token to [run.py](../run.py):
@@ -49,10 +48,12 @@ will automatically detect issues within an MR.
 
 Dependency Scanning checks the [requirements.txt](../requirements.txt) for
 any libraries with vulnerabilities. In order to create a Depending Scanning
-vulnerability you can change the version of Flask:
+vulnerability you can add a vulnerable version of django and change the version
+of Flask:
 
 ```
 Flask==0.12.2
+django==2.0.0
 ```
 
 ## Container Scanning
@@ -62,7 +63,7 @@ any images with vulnerabilities. In order to create a Container Scanning
 vulnerability you can change the version of alpine:
 
 ```
-FROM python:alpine3.7
+FROM python:alpine3.4
 ```
 
 ## License Scanning
