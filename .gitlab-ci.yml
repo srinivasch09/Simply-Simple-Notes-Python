@@ -24,6 +24,7 @@ dast:
   stage: dast
   variables:
     DAST_WEBSITE: http://notes.tanuki.host/
+    DAST_FULL_SCAN_ENABLED: "true"
 
 dependency_scanning:
   stage: test
