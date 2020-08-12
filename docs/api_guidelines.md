@@ -1,4 +1,4 @@
-## APU Usage
+## API Usage
 
 This documentation provides information on using the Simply Simple Notes API.
 With this API, you can create, read, and delete notes.

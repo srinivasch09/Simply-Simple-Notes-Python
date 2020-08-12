@@ -39,6 +39,20 @@ The minimum cluster requirements are as follows:
 - Memory: 2 GB
 - Hard-Disk: Standard 100GB
 
+## Setup the DNS
+
+In order to get the full benefit of the application, you should add a [DNS entry](https://cloud.google.com/dns)
+to your Kubernetes cluster's ingress external IP.
+
+To access the ingress-controller's external IP, run the following command:
+```
+$ kubectl get service -n gitlab-managed-apps
+NAME                                    TYPE           CLUSTER-IP    EXTERNAL-IP       PORT(S)
+ingress-nginx-ingress-controller        LoadBalancer   10.0.14.46    130.211.232.146   80:32512/TCP,443:32411/TCP
+```
+
+Then you can add the DNS entry to your Kubernetes cluster's [base domain](https://docs.gitlab.com/ee/user/project/clusters/#base-domain).
+
 ## Run Pipeline
 
 Once the project has been migrated and the cluster has been attached, 
