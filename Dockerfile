@@ -1,4 +1,5 @@
 FROM python:alpine3.7
+RUN apk --no-cache update && apk --no-cache add musl=1.1.18-r4
 
 RUN apk update
 
