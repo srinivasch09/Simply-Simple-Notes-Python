@@ -13,6 +13,7 @@ include:
   - template: Container-Scanning.gitlab-ci.yml
   - template: DAST.gitlab-ci.yml
   - template: Secret-Detection.gitlab-ci.yml
+  - template: Coverage-Fuzzing.gitlab-ci.yml
   - template: Managed-Cluster-Applications.gitlab-ci.yml
   
 container_scanning:
