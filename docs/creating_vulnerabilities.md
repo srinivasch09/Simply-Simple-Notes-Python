@@ -41,8 +41,21 @@ aws_key_secret = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
 DAST scans a running application's for vulnerabilites by sending
 malicious requests. It can detect things like XSS, etc.
 
-Since this project doesn't send certain security headers, then DAST
-will automatically detect issues within an MR.
+In order to create a DAST vulnerability, we can add a new route to the
+application in [routes.py](../notes/routes.py):
+
+```
+@note.route('/get-with-vuln', methods=['GET'])
+def get_note_with_vulnerability():
+    id = request.args.get('id')
+    conn = db.create_connection()
+
+    with conn:
+        try:
+            return str(db.select_note_by_id(conn, id))
+        except Exception as e:
+            return "Failed to delete Note: %s" % e
+```
 
 ## Dependency Scanning
 
