@@ -53,6 +53,11 @@ ingress-nginx-ingress-controller        LoadBalancer   10.0.14.46    130.211.232
 
 Then you can add the DNS entry to your Kubernetes cluster's [base domain](https://docs.gitlab.com/ee/user/project/clusters/#base-domain).
 
+Once the DNS has been setup, you need to change a few variables to enable DAST to scan the correct URL.
+- [README.md](../README.md): has a link to the url where the project is hosted, we just need to change this.
+- [.gitlab-ci.yml](../.gitlab-ci.yml): tells DAST which URL to scan, this needs to be changed.
+- [sitemap.xml](../notes/static/sitemap.xml): provides the sitemap for your application, this needs to be changed.
+
 ## Run Pipeline
 
 Once the project has been migrated and the cluster has been attached, 
