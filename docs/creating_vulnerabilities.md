@@ -57,6 +57,8 @@ def get_note_with_vulnerability():
             return "Failed to delete Note: %s" % e
 ```
 
+Be sure to add the new path to the [sitemap.xml](../notes/static/sitemap.xml)
+
 ## Dependency Scanning
 
 Dependency Scanning checks the [requirements.txt](../requirements.txt) for
@@ -81,6 +83,10 @@ FROM python:alpine3.4
 
 ## License Scanning
 
-License Scanning scans licenses in [requirements.txt](../requirements.txt) and
-matches them agains a policy. In order to create a License Scanning
-vulnerability you can add the GNU License to the list of denied licenses.
+License Scanning scans licenses for dependencies in [requirements.txt](../requirements.txt) and
+matches them agains a policy. In order to create a License Scanning vulnerability you can add the
+Apache 2.0 License to the list of denied licenses via the [License Compliance](https://docs.gitlab.com/ee/user/compliance/license_compliance/) Interface and add the following to requirements.txt:
+
+```
+dubbo-client
+```
