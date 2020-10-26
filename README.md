@@ -1,7 +1,7 @@
 # Simply Simple Notes
 
 This is a simple application that stores notes in a SQLite file. This project is
-meant to be used as a demo to display some of the Gitlab's [Secure](https://about.gitlab.com/stages-devops-lifecycle/secure/) and [Defend](https://about.gitlab.com/stages-devops-lifecycle/defend/) features.
+meant to be used as a demo to display some of the Gitlab's [Secure](https://about.gitlab.com/stages-devops-lifecycle/secure/) and [Defend](https://about.gitlab.com/stages-devops-lifecycle/defend/) features. This branch (tmedlin-demo-branch) will not be merged to default. 
 
 To get started on giving a demo see the [Running a Secure Demo](./docs/running_demo_secure_stage.md) section as well as the [Running a Defend Demo](./docs/running_demo_defend_stage.md) section,
 depending on what you wanna showcase. If you want to create Vulnerabilities to showcase, checkout
