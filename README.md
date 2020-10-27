@@ -11,6 +11,8 @@ In order to setup this project in your own space, checkout the [Usage Guide](./d
 
 The application can be accessed in production by visting [http://notes.tanuki.host/](http://notes.tanuki.host/).
 
+More to come.
+
 ## Requirements
 
 - Python
