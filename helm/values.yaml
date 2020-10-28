@@ -1,2 +1,3 @@
 port: 80
 targetPort: 5000
+host: notes.tanuki.host
