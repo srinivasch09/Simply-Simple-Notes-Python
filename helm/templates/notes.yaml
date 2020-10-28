@@ -37,7 +37,8 @@ metadata:
   name: notes-ingress
 spec:
   rules:
-  - http:
+  - host:  "notes.tanuki.host"
+    http:
       paths:
       - path: /
         backend:
