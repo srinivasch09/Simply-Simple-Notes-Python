@@ -16,7 +16,7 @@ class TestDBCreate(unittest.TestCase):
     def test_create_table(self):
         conn = db.create_connection(name="test.db")
         db.create_table(conn, notes.sql_create_notes_table)
-        time.sleep(5)
+        time.sleep(2)
         
         res = conn.execute("SELECT name FROM sqlite_master WHERE type='table';")
         nameExists = False

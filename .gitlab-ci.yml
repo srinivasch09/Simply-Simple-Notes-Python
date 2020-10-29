@@ -1,10 +1,14 @@
 image: docker:19.03.8
 
-variables:
-  DOCKER_DRIVER: overlay2
-  DOCKER_TLS_CERTDIR: ""
-  DOCKER_HOST: tcp://docker:2375
-  MOUNT_POINT: /builds/$CI_PROJECT_PATH/mnt
+
+services:
+  - docker:19.03.8-dind
+
+stages:
+  - build
+  - test
+  - deploy
+  - dast
 
 include:
   - template: SAST.gitlab-ci.yml
@@ -13,25 +17,19 @@ include:
   - template: Container-Scanning.gitlab-ci.yml
   - template: DAST.gitlab-ci.yml
   - template: Secret-Detection.gitlab-ci.yml
-  - template: Coverage-Fuzzing.gitlab-ci.yml
   - template: Managed-Cluster-Applications.gitlab-ci.yml
-  
-container_scanning:
-    stage: test
-    variables:
-        GIT_STRATEGY: fetch
-        KLAR_TRACE: "true"
-        CLAIR_TRACE: "true"
-dast:
-  stage: dast
-  variables:
-    DAST_WEBSITE: http://notes.tanuki.host/
-    DAST_FULL_SCAN_ENABLED: "true"
 
-dependency_scanning:
-  stage: test
+build:
+  image: docker:19.03.8
+  stage: build
   variables:
-    CI_DEBUG_TRACE: "true"
+    IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHA
+  script:
+    - sleep 5
+    - docker info
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $IMAGE .
+    - docker push $IMAGE
     
 sast:
   stage: test
@@ -47,27 +45,6 @@ unit:
   script:
     - pip install -r requirements.txt
     - python -m unittest tests/test_db.py
-
-services:
-  - docker:19.03.8-dind
-
-stages:
-  - build
-  - test
-  - deploy
-  - dast
-
-build:
-  image: docker:19.03.8
-  stage: build
-  variables:
-    IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHA
-  script:
-    - sleep 5
-    - docker info
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build -t $IMAGE .
-    - docker push $IMAGE
     
 deploy_staging:
   image: registry.gitlab.com/gitlab-org/cluster-integration/helm-install-image/releases/3.2.4-kube-1.13.12
@@ -80,3 +57,11 @@ deploy_staging:
     - helm upgrade -f helm/values.yaml --set image=$IMAGE --install notes ./helm
   environment:
     name: staging
+  allow_failure: true
+
+dast:
+  stage: dast
+  variables:
+    DAST_WEBSITE: http://notes.tanuki.host/
+    DAST_FULL_SCAN_ENABLED: "true"
+  allow_failure: true
