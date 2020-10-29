@@ -2,15 +2,15 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
-      <loc>http://notes.tanuki.host/</loc>
+      <loc>http://devsecops.tanuki.host/notes</loc>
    </url>
    <url>
-      <loc>http://notes.tanuki.host/add</loc>
+      <loc>http://devsecops.tanuki.host/notes/add</loc>
    </url>
    <url>
-      <loc>http://notes.tanuki.host/delete</loc>
+      <loc>http://devsecops.tanuki.host/notes/delete</loc>
    </url>
    <url>
-      <loc>http://notes.tanuki.host/get</loc>
+      <loc>http://devsecops.tanuki.host/notes/get</loc>
    </url>
 </urlset> 
