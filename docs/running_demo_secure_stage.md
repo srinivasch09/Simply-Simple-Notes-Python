@@ -23,19 +23,20 @@ engineers can collborate on, in order to secure an application.
 
 ## AppSec Engineer Workflow
 
+1. Display the Project-Level Security Dashboard
+    - Go over different types of sorting
+    - View a vulnerability
+    - Change the status of that vulnerability
+    - Show that the user who changed the status as well as when is recorded.
 1. Display the Group-Level Security Dashboard
     - Go over different types of sorting
     - Examine rate of change
     - Display A-F risk
-1. Display the Project-Level Security Dashboard
-    - Go over different types of sorting
-    - View vulnerability issues dismissed by developer
-    - View created confidential issue
 
 ## Configuration
 
 1. Display the [.gitlab-ci.yml](../.gitlab-ci.yml) file.
     - Go into how to add security scanner templates
     - Go over environment variable
-1. Show how to add GitLab managed apps.
-
+1. Show how to configure security scans with Auto DevOps
+1. Show how to configure security scans using UI
