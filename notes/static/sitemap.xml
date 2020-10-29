@@ -13,4 +13,7 @@
    <url>
       <loc>http://devsecops.tanuki.host/notes/get</loc>
    </url>
+   <url>
+      <loc>http://devsecops.tanuki.host/notes/get-with-vuln</loc>
+   </url>
 </urlset> 

@@ -93,3 +93,14 @@ def get_note_ui():
 @note.route('/get', methods=['GET'])
 def get_note():
     return str(get_note_ui())
+
+@note.route('/get-with-vuln', methods=['GET'])
+def get_note_with_vulnerability():
+    id = request.args.get('id')
+    conn = db.create_connection()
+
+    with conn:
+        try:
+            return str(db.select_note_by_id(conn, id))
+        except Exception as e:
+            return "Failed to delete Note: %s" % e

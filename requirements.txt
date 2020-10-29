@@ -1,5 +1,7 @@
-Flask
+Flask==0.12.2
+django==2.0.0
 flask_wtf
 wtforms
 flask-bootstrap
+dubbo-client
 pysqlite3

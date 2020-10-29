@@ -9,6 +9,7 @@ def create_connection(name='notes.db'):
 
     try:
         conn = sqlite3.connect(name)
+        os.chmod(name, 0o777)
     except Error as e:
         logging.error(e)
 
@@ -51,3 +52,12 @@ def select_note_by_id(conn, id=None):
 
     rows = cur.fetchall()
     return rows
+
+def select_note_by_id_vulnerable(conn, id):
+    query = "SELECT * FROM notes WHERE id = '%s'" % id
+
+    cur = conn.cursor()
+    cur.execute(query)
+
+    rows = cur.fetchall()
+    return str(rows)
