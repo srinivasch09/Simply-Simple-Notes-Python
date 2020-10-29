@@ -62,6 +62,6 @@ deploy_staging:
 dast:
   stage: dast
   variables:
-    DAST_WEBSITE: http://notes.tanuki.host/
+    DAST_WEBSITE: http://devsecops.tanuki.host/notes
     DAST_FULL_SCAN_ENABLED: "true"
   allow_failure: true

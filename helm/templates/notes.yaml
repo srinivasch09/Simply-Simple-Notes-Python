@@ -40,7 +40,7 @@ spec:
   - host:  "{{ .Values.host }}"
     http:
       paths:
-      - path: /
+      - path: /notes
         backend:
           serviceName: notes-svc
           servicePort: {{ .Values.port }}

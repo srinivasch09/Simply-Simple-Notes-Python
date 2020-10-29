@@ -8,7 +8,7 @@ the [Creating Vulnerabilities](./docs/creating_vulnerabilities.md) Documentation
 
 In order to setup this project in your own space, checkout the [Usage Guide](./docs/usage_guide.md).
 
-The application can be accessed in production by visting [http://notes.tanuki.host/](http://notes.tanuki.host/).
+The application can be accessed in production by visting [http://devsecops.tanuki.host/notes](http://devsecops.tanuki.host/notes).
 
 ## Requirements
 
