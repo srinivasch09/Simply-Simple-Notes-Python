@@ -26,7 +26,7 @@ def index():
         flash('Note "{}" has been added!'.format(
             add_form.note_field.data))
 
-        return redirect('/')
+        return redirect('/notes')
 
     # TODO: Add return and flash error if note does not exist
     if delete_form.validate_on_submit():
@@ -34,7 +34,7 @@ def index():
         flash('Note "{}" has been Deleted!'.format(
             delete_form.id_field.data))
 
-        return redirect('/')
+        return redirect('/notes')
     
     return render_template('index.html', notes=arr, add_form=add_form, delete_form=delete_form)
 
