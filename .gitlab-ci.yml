@@ -38,13 +38,6 @@ sast:
   artifacts:
     reports:
       sast: gl-sast-report.json
-
-unit:
-  stage: test
-  image: python:alpine
-  script:
-    - pip install -r requirements.txt
-    - python -m unittest tests/test_db.py
     
 deploy_staging:
   image: registry.gitlab.com/gitlab-org/cluster-integration/helm-install-image/releases/3.2.4-kube-1.13.12
