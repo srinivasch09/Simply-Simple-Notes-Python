@@ -8,9 +8,6 @@ cilium:
 
 ingress:
   installed: true
-  
-prometheus:
-  installed: true
 
 apparmor:
   installed: true
