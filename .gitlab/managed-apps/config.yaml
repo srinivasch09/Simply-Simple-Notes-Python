@@ -1,8 +1,5 @@
 clusterType: gke
 
-vault:
-  installed: true
-
 cilium:
   installed: true
 
