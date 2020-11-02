@@ -1,12 +1,13 @@
 # Simply Simple Notes
 
 This is a simple application that stores notes in a SQLite file. This project is
-meant to be used as a demo to display some of the Gitlab's [Secure](https://about.gitlab.com/stages-devops-lifecycle/secure/) features.
+meant to be used as a demo to display some of the Gitlab's [Secure](https://about.gitlab.com/stages-devops-lifecycle/secure/) features. You
+can learn how to use this demo on your own environment by checking out:
 
-To get started on giving a demo see the [Running a Secure Demo](./docs/running_demo_secure_stage.md) section. If you want to create Vulnerabilities to showcase, checkout
-the [Creating Vulnerabilities](./docs/creating_vulnerabilities.md) Documentation.
+[![demo_video](http://img.youtube.com/vi/NScuPB5uwg4/0.jpg)](http://www.youtube.com/watch?v=NScuPB5uwg4 "")
 
-In order to setup this project in your own space, checkout the [Usage Guide](./docs/usage_guide.md).
+For more information on [Running a Secure Demo](./docs/running_demo_secure_stage.md) section. If you want to create Vulnerabilities to showcase, checkout
+the [Creating Vulnerabilities](./docs/creating_vulnerabilities.md) Documentation. In order to setup this project in your own space, checkout the [Usage Guide](./docs/usage_guide.md).
 
 The application can be accessed in production by visting [http://devsecops.tanuki.host/notes](http://devsecops.tanuki.host/notes).
 
