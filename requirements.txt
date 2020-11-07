@@ -1,5 +1,5 @@
 Flask==0.12.2
-django==2.0.0
+django==2.2.13
 flask_wtf
 wtforms
 flask-bootstrap
